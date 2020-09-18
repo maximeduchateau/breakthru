@@ -4,8 +4,6 @@ public abstract class Boat {
     private boolean silver;
     private String type = "";
     private int Value;
-    private Boolean alive;
-
 
     public abstract int getValue();
 
@@ -14,8 +12,7 @@ public abstract class Boat {
         this.silver = silver;
         this.type = type;
     }
-    //deze functie wordt in beide childklassen overschreden.
-
+    //deze functie wordt in alle childklassen overschreden.
 
     public boolean isValidMove(int sourceX, int sourceY, int destX, int destY, Square[][] board) {
         return (true);
@@ -25,6 +22,7 @@ public abstract class Boat {
         return (true);
     }
 
+    //see if the piece is from the silver team
     public boolean getSilver() {
         return this.silver;
     }
@@ -33,6 +31,7 @@ public abstract class Boat {
         return this.type;
     }
 
+    // this one is to check if something goes wrong, but I guess it could be done smarter
     public int getScoreForPiecePosition(int row, int column) {
         return 3000000;
     }

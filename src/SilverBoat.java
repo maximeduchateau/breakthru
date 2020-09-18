@@ -1,5 +1,4 @@
 public class SilverBoat extends Boat {
-    private Boolean alive;
 
     public SilverBoat(boolean silver) {
         super(silver);
@@ -13,13 +12,6 @@ public class SilverBoat extends Boat {
         return 30;
     }
 
-    public Boolean getAlive() {
-        return this.alive;
-    }
-
-    public void setAlive(boolean aliveUpdate) {
-        this.alive = aliveUpdate;
-    }
 
     //override function from superclass, decide whether the move is valid for the goldenboats FOR 1 NON CAPTURE MOVE!!!
     public boolean isValidMove(int sourceX, int sourceY, int destX, int destY, Square[][] board) {
@@ -108,6 +100,7 @@ public class SilverBoat extends Boat {
         return validCapture;
     }
 
+    //some boatpositions are more advantageous for this boat then others, we'll incorporate this in the ratingfunction
     public int getScoreForBoatPosition(int row, int column) {
         int[][] positionWeight =
                 {{-30, -30, -30, -30, -30, -30, -30, -30, -30, -30, -30},

@@ -13,7 +13,7 @@ public class Game {
 
     //constructor
     public Game() {
-        this.board=board;
+        this.board = board;
     }
 
     //start game is hoofdfunctie
@@ -59,11 +59,12 @@ public class Game {
                     Move move = aiPlayer.decideMove();
                     move.makeMove(move);
                     checkIfGoldWon(board);
-                        ++i;
+                    ++i;
                     continue;
                 }
 
                 //if not goldAI
+                //TODO:the goldplayer can decide to pass in first move, incorporate this
                 if (!goldAI) {
                     notAIMove();
                     printBoard(board);
@@ -74,14 +75,16 @@ public class Game {
                     continue;
                 }
 
-
+// it it's the turn of the silver player
             } else {
                 System.out.println("turn of Silver Team");
                 // if silver AI (so not gold AI)
                 if (!goldAI) {
                     Move move = aiPlayer.decideMove();
                     move.makeMove(move);
-                    if (move.getTargetBoat().getType().equals("flagship")){GAMEOVER=true;}
+                    if (move.getTargetBoat().getType().equals("flagship")) {
+                        GAMEOVER = true;
+                    }
                     printBoard(board);
                     if (GAMEOVER) {
                         System.out.println("GAME OVER");
@@ -108,6 +111,7 @@ public class Game {
         }
     }
 
+    // function that makes the move for the non AI, asking coordinates and checking validity
     public void notAIMove() {
         //geef coördinaten in van positie en gewenste zet
         System.out.println("give x-position of piece you'd like to move ");
@@ -119,13 +123,15 @@ public class Game {
         System.out.println("give y-position of place you'd like to move your piece to ");
         int destY = scan.nextInt();
 
-        //ik kreeg hier exception ik weet niet waarom
+        //check whether it's a valid Move/capture
+        //TODO: implement a double move & single capture system for all moves except for flagship
         if (board[sourceX][sourceY].getBoat().isValidMove(sourceX, sourceY, destX, destY, board) || board[sourceX][sourceY].getBoat().isValidCapture(sourceX, sourceY, destX, destY, board)) {
             board[destX][destY].setBoat(board[sourceX][sourceY].getBoat());
             board[sourceX][sourceY].setBoat(null);
             if (board[destX][destY].getBoat().getType() == "flagship") {
                 System.out.println("GAME OVER, SILVER WINS");
-                GAMEOVER = true; }
+                GAMEOVER = true;
+            }
             checkIfGoldWon(board);
 
         } else {
@@ -133,9 +139,9 @@ public class Game {
         }
     }
 
-
+    //this function creates all squares and assigns boats to the squares
     public Square[][] initializeBoard() {
-        // initialize remaining boxes without any piece
+        // initialize all squares without boats
         Square[][] board = new Square[11][11];
         for (int i = 0; i <= 10; i++) {
             for (int j = 0; j <= 10; j++) {
@@ -216,13 +222,17 @@ public class Game {
 
 
     }
-    public void checkIfGoldWon(Square[][] board){
+
+    // check if golds flagship made it to the outer perimeter of the board and thus won!
+    public void checkIfGoldWon(Square[][] board) {
         for (int i = 0; i < 11; ++i) {
-            if (board[i][0].getBoat().getType().equals("flagship")||board[i][10].getBoat().getType().equals("flagship")||board[0][i].getBoat().getType().equals("flagship")||board[10][i].getBoat().getType().equals("flagship")){
+            if (board[i][0].getBoat().getType().equals("flagship") || board[i][10].getBoat().getType().equals("flagship") || board[0][i].getBoat().getType().equals("flagship") || board[10][i].getBoat().getType().equals("flagship")) {
                 System.out.println("gold won");
                 System.out.println("GAME OVER");
-            GAMEOVER=true;
+                GAMEOVER = true;
             }
-}}}
+        }
+    }
+}
 
 

@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 public class Flagship extends Boat {
-    //member variables
-    private Boolean alive;
+
 
     public Flagship(boolean silver) {
         super(silver);
@@ -14,15 +13,6 @@ public class Flagship extends Boat {
 
     public int getValue() {
         return 1000;
-    }
-
-    @Override
-    public Boolean getAlive() {
-        return this.alive;
-    }
-
-    public void setAlive(boolean aliveUpdate) {
-        this.alive = aliveUpdate;
     }
 
 
@@ -45,7 +35,7 @@ public class Flagship extends Boat {
     }
 
 
-    //checks wheter there are no chesspieces at destination coordinates or on the way over there.
+    //checks wheter there are no boats at destination coordinates or on the way over there.
     public boolean noPieceInWay(int sourceX, int sourceY, int destX, int destY, Square[][] board) {
         boolean noPieceInWay = true;
         // case for vertical moves
@@ -93,6 +83,8 @@ public class Flagship extends Boat {
         return noPieceInWay;
     }
 
+//function checks if it is a valid capture
+
     public boolean isValidCapture(int sourceX, int sourceY, int destX, int destY, Square[][] board) {
         boolean validCapture = true;
         //not valid if the destination position equals the beginningposition.
@@ -113,6 +105,7 @@ public class Flagship extends Boat {
         return validCapture;
     }
 
+    //some boatpositions are more advantageous for this boat then others, we'll incorporate this in the ratingfunction
     public int getScoreForBoatPosition(int row, int column) {
         int[][] positionWeight =
                 {{1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000},

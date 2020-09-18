@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+//TODO: iets veranderen aan hoe ik altijd move.functie(move) moet aanroepen
 public class Move {
     private Square initialSquare;
     private Square targetSquare;
@@ -39,6 +39,7 @@ public class Move {
         return initialSquare.getBoat() + ": " + initialSquare + " -> " + targetSquare;
     }
 
+    // this function executes the moves from the AI player
     public void makeMove(Move move) {
         initialSquare = move.getInitialSquare();
         targetSquare = move.getTargetSquare();
@@ -47,6 +48,7 @@ public class Move {
         initialSquare.setBoat(null);
     }
 
+    // this function undoes moves from the AI player
     public void undoMove(Move move) {
         initialSquare = move.getInitialSquare();
         targetSquare = move.getTargetSquare();
