@@ -36,7 +36,8 @@ public class Square {
     public void setY(int y) {
         this.y = y;
     }
-//computes a list of legal moves
+
+    //computes a list of all legal moves possible from a specific square
     public void computeLegalMoves(Square[][] board) {
         this.legalMoves = new ArrayList<>();
         for (int i = 0; i < 11; ++i) {
@@ -50,4 +51,4 @@ public class Square {
     }
 
 
-            }
+}
