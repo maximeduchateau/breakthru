@@ -133,7 +133,7 @@ public class AIPlayer extends Player {
         }
         return allLegalMoves;
     }
-
+//TODO:hier moet reward voor een bepaalde bordpositie nog in opgenomen worden en dat capture moves altijd veel interessanter zijn dan niet capture moves, dus hogere rating
     public int computeRating(boolean goldAI, Square[][] board) {
         ArrayList<Square> listOfAliveSquaresGold = listOfAliveSquares(true, board);
         ArrayList<Square> listOfAliveSquaresSilver = listOfAliveSquares(false, board);
